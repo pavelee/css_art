@@ -7,10 +7,21 @@
       href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <style>
       .vt323-regular {
         font-family: "VT323", monospace;
         font-weight: 200;
+        font-style: normal;
+      }
+      .roboto-regular {
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
         font-style: normal;
       }
       body {
@@ -111,10 +122,13 @@
       .window {
         background: white;
         margin: 20px;
-        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
         min-height: 200px;
         min-width: 300px;
         border-radius: 15px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
       }
 
       .window .body {
@@ -122,6 +136,7 @@
       }
 
       .window .bar {
+        width: 100%;
         display: flex;
         gap: 5px;
         justify-content: start;
@@ -216,6 +231,18 @@
         width: 50px;
         height: 50px;
         border-radius: 10px;
+        position: relative;
+      }
+
+      .system-bar .bar-apps .app .open-dot {
+        width: 5px;
+        height: 5px;
+        background: white;
+        border-radius: 50%;
+        margin: 5px;
+        position: absolute;
+        bottom: -14px;
+        left: 15px;
       }
 
       .devto {
@@ -259,6 +286,105 @@
         background-position: center;
         background-repeat: no-repeat;
       }
+
+      .terminal {
+        background: url("https://w7.pngwing.com/pngs/226/673/png-transparent-terminal-macos-unix-swipe-angle-rectangle-computer.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      /** Browser **/
+
+      .window.browser .body {
+        padding: 0;
+      }
+
+      /** Dev.to **/
+
+      .body.dev-to {
+        display: flex;
+        flex-direction: column;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      .dev-to-bar {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        height: 50px;
+        padding: 5px 15px;
+        background: white;
+        border-radius: 15px 15px 0 0;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+      }
+
+      .dev-to-bar .logo img {
+        width: 50px;
+        height: 40px;
+      }
+
+      .dev-to-bar .search-bar {
+        position: relative;
+      }
+
+      .dev-to-bar .search-bar input {
+        width: 250px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        height: 30px;
+      }
+
+      .dev-to-bar .search-bar .search-icon {
+        position: absolute;
+        right: 5px;
+        top: 8px;
+      }
+
+      .dev-to .root {
+        background-color: #f5f5f5;
+        padding: 30px;
+      }
+
+      .dev-to .content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 30px;
+        background: white;
+        box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+      }
+
+      .dev-to .dev-to-bar .toolbar {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .dev-to .dev-to-bar .toolbar .cta {
+        padding: 10px;
+        border: 1px solid rgb(59, 73, 223);
+        background-color: #fff;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        color: rgb(59, 73, 223);
+      }
+
+      .dev-to .dev-to-bar .toolbar .second {
+        padding: 10px;
+        color: gray;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #fff;
+        border: none;
+      }
     </style>
   </head>
 
@@ -300,10 +426,64 @@
             </div>
           </div>
 
+          <div class="window browser">
+            <div class="bar">
+              <div class="controls">
+                <div class="close"></div>
+                <div class="minimize"></div>
+                <div class="maximize"></div>
+              </div>
+              <div class="title">dev.to</div>
+            </div>
+            <div class="body dev-to">
+              <div class="dev-to-bar">
+                <div class="logo">
+                  <img
+                    src="https://dev-to-uploads.s3.amazonaws.com/uploads/logos/resized_logo_UQww2soKuUsjaOGNB38o.png"
+                  />
+                </div>
+                <div class="search-bar">
+                  <input type="text" placeholder="Search..." />
+                  <div class="search-icon">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      class="crayons-icon c-btn__icon"
+                      focusable="false"
+                    >
+                      <path
+                        d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="toolbar">
+                  <button class="second">Log in</button>
+                  <button class="cta">Create account</button>
+                </div>
+              </div>
+              <div class="root">
+                <div class="content">
+                  <img
+                    src="https://media.dev.to/cdn-cgi/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fkq4rwu60abgxb8q047rb.jpg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="system-bar">
             <div class="bar-apps">
-              <div class="app devto"></div>
+              <div class="app devto">
+                <div class="open-dot"></div>
+              </div>
               <div class="app settings"></div>
+              <div class="app terminal">
+                <div class="open-dot"></div>
+              </div>
               <div class="app chrome"></div>
               <div class="app lego"></div>
               <div class="app linkedin"></div>
