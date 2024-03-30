@@ -126,17 +126,18 @@
         min-height: 200px;
         min-width: 300px;
         border-radius: 15px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
       }
 
       .window .body {
         padding: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
 
       .window .bar {
-        width: 100%;
         display: flex;
         gap: 5px;
         justify-content: start;
