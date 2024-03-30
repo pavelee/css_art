@@ -17,7 +17,7 @@
         font-family: Arial, sans-serif;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: end;
         height: 100vh;
       }
 
@@ -37,6 +37,56 @@
         animation: blink 1s infinite;
       }
 
+      /** Computer **/
+
+      /** Screen border **/
+
+      .screen-border {
+        border: 30px solid #ecedef;
+        border-radius: 15px 15px 0 0;
+      }
+
+      .screen-border .top-border {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+
+      .screen-border .camera {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: black;
+        border-radius: 50%;
+        top: -20px;
+      }
+
+      /** Bottom panel **/
+
+      .bottom-panel {
+        z-index: 100;
+        width: 100%;
+        height: 120px;
+        background-color: #f4cbc5;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
+      }
+
+      /** Footer **/
+
+      .footer {
+        margin: auto;
+        width: 20%;
+        height: 200px;
+        background-color: #f4cbc5;
+        border-radius: 0 0 15px 15px;
+        position: relative; /* Add this line to make z-index work */
+        z-index: -1; /* Add this line to send the footer to the back */
+      }
+
+      /** Screen **/
+
       .screen {
         background: -webkit-linear-gradient(
           right,
@@ -48,17 +98,18 @@
           #f38ccc
         );
         width: 1200px;
-        height: 600px;
+        height: 700px;
         padding: 20px;
         display: flex;
         flex-direction: column;
         position: relative;
+        border: 2px solid black;
       }
 
-      /** Terminal */
+      /** Window **/
 
-      .terminal {
-        background: black;
+      .window {
+        background: white;
         margin: 20px;
         box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
         min-height: 200px;
@@ -66,17 +117,11 @@
         border-radius: 15px;
       }
 
-      .terminal .text {
-        font-family: "VT323", monospace;
-        font-weight: 200;
-        font-style: normal;
-        font-size: 20px;
-        letter-spacing: 4px;
-        color: #00ff00;
+      .window .body {
         padding: 10px;
       }
 
-      .terminal .bar {
+      .window .bar {
         display: flex;
         gap: 5px;
         justify-content: start;
@@ -85,20 +130,21 @@
         border-radius: 15px 15px 0 0;
       }
 
-      .terminal .bar .title {
+      .window .bar .title {
         color: white;
         font-weight: bold;
         flex-grow: 1;
         text-align: center;
       }
 
-      .terminal .bar .controls {
+      .window .bar .controls {
         display: flex;
         position: absolute;
         gap: 5px;
+        cursor: pointer;
       }
 
-      .terminal .bar .controls .close {
+      .window .bar .controls .close {
         background: red;
         width: 15px;
         height: 15px;
@@ -107,7 +153,7 @@
         opacity: 0.9;
       }
 
-      .terminal .bar .controls .minimize {
+      .window .bar .controls .minimize {
         background: yellow;
         width: 15px;
         height: 15px;
@@ -116,7 +162,7 @@
         opacity: 0.9;
       }
 
-      .terminal .bar .controls .maximize {
+      .window .bar .controls .maximize {
         background: green;
         width: 15px;
         height: 15px;
@@ -125,7 +171,23 @@
         opacity: 0.9;
       }
 
+      /** Terminal */
+
+      .window.terminal {
+        background: black;
+      }
+
+      .terminal .body {
+        font-family: "VT323", monospace;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 20px;
+        letter-spacing: 4px;
+        color: #00ff00;
+      }
+
       /** System bar */
+
       .system-bar {
         position: absolute;
         bottom: 0;
@@ -199,36 +261,59 @@
       }
     </style>
   </head>
+
+  <!-- window tempalte -->
+  <!-- <div class="window">
+    <div class="bar">
+      <div class="controls">
+        <div class="close"></div>
+        <div class="minimize"></div>
+        <div class="maximize"></div>
+      </div>
+      <div class="title"></div>
+    </div>
+    <div class="body"></div>
+  </div> -->
+
   <body>
     <div class="computer">
-      <div class="screen">
-        <div class="terminal">
-          <div class="bar">
-            <div class="controls">
-              <div class="close"></div>
-              <div class="minimize"></div>
-              <div class="maximize"></div>
-            </div>
-            <div class="title">we_coded.sh</div>
-          </div>
-          <div class="text">
-            $ we_coded <3<br />
-            $ a celebartion of gender equity in tech<br />
-            $ press any key to continue..<span class="prompt">|</span>
-          </div>
+      <div class="screen-border">
+        <div class="top-border">
+          <div class="camera"></div>
         </div>
-        <div class="system-bar">
-          <div class="bar-apps">
-            <div class="app devto"></div>
-            <div class="app settings"></div>
-            <div class="app chrome"></div>
-            <div class="app lego"></div>
-            <div class="app linkedin"></div>
-            <div class="app facebook"></div>
+        <div class="screen">
+          <div class="window terminal">
+            <div class="bar">
+              <div class="controls">
+                <div class="close"></div>
+                <div class="minimize"></div>
+                <div class="maximize"></div>
+              </div>
+              <div class="title">we_coded.sh</div>
+            </div>
+            <div class="body">
+              <div class="text">
+                $ we_coded <3<br />
+                $ a celebartion of gender equity in tech<br />
+                $ press any key to continue..<span class="prompt">|</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="system-bar">
+            <div class="bar-apps">
+              <div class="app devto"></div>
+              <div class="app settings"></div>
+              <div class="app chrome"></div>
+              <div class="app lego"></div>
+              <div class="app linkedin"></div>
+              <div class="app facebook"></div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="base"></div>
+      <div class="bottom-panel"></div>
+      <div class="footer"></div>
     </div>
   </body>
 </html>
